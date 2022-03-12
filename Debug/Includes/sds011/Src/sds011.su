@@ -1,0 +1,5 @@
+sds011.c:29:6:sdsInit	16	static
+sds011.c:36:6:sdsSleepMode	16	static
+sds011.c:41:6:sdsWorkingMode	16	static
+sds011.c:46:6:resetValues	24	static
+sds011.c:57:6:sds_uart_RxCpltCallback	16	static

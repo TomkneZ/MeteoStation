@@ -1,0 +1,8 @@
+hx710.c:12:6:HX710_Init	32	static
+hx710.c:32:10:HX710_Average_Value	24	static
+hx710.c:43:10:HX710_Value	16	static
+hx710.c:75:7:HX710_Tare	40	static
+hx710.c:82:7:HX710_pascal	56	static
+hx710.c:92:7:HX710_atm	24	static
+hx710.c:97:7:HX710_mmHg	24	static
+hx710.c:102:7:HX710_psi	24	static
