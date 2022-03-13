@@ -68,7 +68,7 @@ main-build: Meteostation.Hardware.elf secondary-outputs
 
 # Tool invocations
 Meteostation.Hardware.elf: $(OBJS) $(USER_OBJS) C:\Users\zaben\STM32CubeIDE\workspace_1.7.0\Meteostation.Hardware\STM32F407VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Meteostation.Hardware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\zaben\STM32CubeIDE\workspace_1.7.0\Meteostation.Hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Meteostation.Hardware.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Meteostation.Hardware.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\zaben\STM32CubeIDE\workspace_1.7.0\Meteostation.Hardware\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Meteostation.Hardware.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -104,9 +104,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
-
-  sdsInit(&sds, &huart1);
-
+  sdsInit(&sds, &huart2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -116,19 +114,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* Work with SDS011 */
-	  sds_uart_RxCpltCallback(&sds, &huart2);
-	  sdsResultSize = sprintf(sdsResult, "pm2.5: %d  pm10: %d \r\n", sds.pm_2_5, sds.pm_10);
 
-	  //HAL_UART_Transmit_IT(&huart5, sdsResult, sdsResultSize);
-	  resetValues(&sds);
+	  sdsResultSize = sprintf(sdsResult, "pm2.5: %f  pm10: %f \r\n", sds.pm_2_5, sds.pm_10);
+	  HAL_UART_Transmit_IT(&huart5, sdsResult, sdsResultSize);
+	  HAL_Delay(2000);
 
-	  uint16_t testSize;
-	  uint8_t testResult[255];
-
-	  if (HAL_UART_Receive_IT(&huart1, testResult, 255) == HAL_OK)
+	  /*if (HAL_UART_Receive_IT(&huart1, testResult, 255) == HAL_OK)
 	  {
-		  HAL_UART_Transmit_IT(&huart5, testResult, 255);
-	  }
+
+	  }*/
 
 
     /* USER CODE BEGIN 3 */
@@ -325,7 +319,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if (huart == &huart2)
+	{
+		sds_uart_RxCpltCallback(&sds, huart);
+	}
+}
 /* USER CODE END 4 */
 
 /**

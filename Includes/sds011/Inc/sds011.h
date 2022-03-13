@@ -12,8 +12,8 @@
 
 typedef struct SDS_t {
   UART_HandleTypeDef* huart_sds;
-  uint16_t pm_2_5;
-  uint16_t  pm_10;
+  float pm_2_5;
+  float  pm_10;
   uint8_t data_receive[19];
 } SDS;
 

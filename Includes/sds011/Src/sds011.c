@@ -45,8 +45,8 @@ void sdsWorkingMode(SDS* sds)
 
 void resetValues(SDS* sds)
 {
-	sds->pm_10 = 0;
-	sds->pm_2_5 = 0;
+	sds->pm_10 = 0.0;
+	sds->pm_2_5 = 0.0;
 
 	for(int i=0; i<sizeof(sds->data_receive); i++)
 	{
@@ -60,8 +60,8 @@ void sds_uart_RxCpltCallback(SDS* sds, UART_HandleTypeDef *huart)
 	{
 		if((sds->data_receive[0] == SDS_HEADER1) && (sds->data_receive[1] == SDS_HEADER2))
 		{
-			sds->pm_2_5 = ((sds->data_receive[3]<<8)| sds->data_receive[2])/10;
-			sds->pm_10 = ((sds->data_receive[5]<<8)| sds->data_receive[4])/10;
+			sds->pm_2_5 = (float)((sds->data_receive[3]<<8)| sds->data_receive[2])/10;
+			sds->pm_10 = (float)((sds->data_receive[5]<<8)| sds->data_receive[4])/10;
 		}
 
 		HAL_UART_Receive_IT(sds->huart_sds, sds->data_receive, 10);
